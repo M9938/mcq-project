@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2020 at 04:19 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: May 27, 2024 at 07:32 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cee_db`
+-- Database: `learner`
 --
 
 -- --------------------------------------------------------
@@ -39,7 +39,7 @@ CREATE TABLE `admin_acc` (
 --
 
 INSERT INTO `admin_acc` (`admin_id`, `admin_user`, `admin_pass`) VALUES
-(1, 'admin@username', 'admin@password');
+(1, 'admin@username', '$2y$10$XAVqLnCth2xk4GPcqIsekOzEjm3QZbBVEdDa3zzuUKZiOIyTZN/4i');
 
 -- --------------------------------------------------------
 
