@@ -21,31 +21,27 @@ $(document).on("submit","#adminLoginFrm", function(){
 
 //Admin sign up
 $(document).on("submit", "#adminSignUpForm", function(){
-  // Serialize the form data and send it via AJAX POST request
   $.post("query/signupExe.php", $(this).serialize(), function(data){
-    // Check the response from the server
     if(data.res == "invalid") {
-      // Display error alert for invalid username/password
       Swal.fire(
         'Invalid',
         'Please input valid username / password',
         'error'
       );
     } else if(data.res == "password_mismatch") {
-      // Display error alert for password mismatch
       Swal.fire(
         'Password Mismatch',
         'password and confirm password should be same. Please try again.',
         'error'
       );
     } else if(data.res == "success") {
-      // Redirect to index.php if registration is successful
       $('body').fadeOut();
+      alert("Account Created succesfully.Kindly Login.")
       window.location.href='index.php';
     }
   }, 'json');
 
-  return false; // Prevent default form submission
+  return false; 
 });
 
 
