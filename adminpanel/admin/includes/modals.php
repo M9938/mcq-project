@@ -187,7 +187,7 @@
           </div>
           <div class="form-group">
             <label>Password</label>
-            <input type="password" name="password" id="password" class="form-control" placeholder="Input Password" autocomplete="off" required="">
+            <input type="password"  name="password" id="password" class="form-control" placeholder="Input Password" autocomplete="off" required="">
           </div>
         </div>
       </div>
