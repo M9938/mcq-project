@@ -318,3 +318,5 @@
         </div>
     </div>
 </div>
+
+<div id="toastContainer" aria-live="polite" aria-atomic="true" style="position: absolute; top: 0; right: 0; z-index: 9999;"></div>

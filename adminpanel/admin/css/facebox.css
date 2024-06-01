@@ -79,3 +79,32 @@
   background-color: #000;
   z-index: 99;
 }
+
+#toastContainer {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 9999;
+}
+
+.toast {
+  display: none;
+  min-width: 200px;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  opacity: 0.9;
+}
+
+.toast-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.toast-body {
+  margin-top: 5px;
+}

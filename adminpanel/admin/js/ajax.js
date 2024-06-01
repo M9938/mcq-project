@@ -479,7 +479,7 @@ $(document).ready(function() {
                 var jsonResponse = JSON.parse(response);
                 console.log(jsonResponse);
                 $('#validationMessages').text(jsonResponse);
-                // window.location.href = "index.php";
+                // window.location.href = "manage-exam.php";
             },
             error: function(jqXHR, textStatus, error) {
                 console.log("AJAX Error:", error);
