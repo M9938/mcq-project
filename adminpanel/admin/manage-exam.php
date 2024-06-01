@@ -113,6 +113,7 @@ if(!isset($_SESSION['admin']['adminnakalogin']) == true) header("location:index.
                             </span>
                              <div class="btn-actions-pane-right">
                                 <button class="btn btn-sm btn-primary " data-toggle="modal" data-target="#modalForAddQuestion">Add Question</button>
+                                <button class="btn btn-sm btn-primary " data-toggle="modal" data-target="#spreedModal">Upload Excel</button>
                               </div>
                           </div>
                           <div class="card-body" >

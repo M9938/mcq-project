@@ -407,3 +407,100 @@ function refreshDiv()
 }
 
 
+//excel work
+$(document).ready(function() {
+  $('#preview').click(function(e) {
+      e.preventDefault();
+      var formData = new FormData($('#uploadForm')[0]);
+
+      $.ajax({
+          type: 'POST',
+          url: 'query/excelValidation.php?action=validate',
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function(response) {
+              var jsonResponse = JSON.parse(response);
+
+              var message = jsonResponse.message + "\n";
+              if (jsonResponse.errors) {
+                  message += "Errors:\n";
+                  jsonResponse.errors.forEach(function(error) {
+                      message += "- " + error + "\n";
+                  });
+              }
+              if (jsonResponse.emptyCells) {
+                  message += "Empty Cells:\n";
+                  jsonResponse.emptyCells.forEach(function(emptyCell) {
+                      message += "- " + emptyCell + "\n";
+                  });
+              }
+
+              $('#validationMessages').text(message);
+
+              if (!jsonResponse.errors && !jsonResponse.emptyCells) {
+                  if (jsonResponse.tableHTML) {
+                      $('#excelTable').html(jsonResponse.tableHTML);
+                  }
+              }
+          },
+          error: function(xhr, status, error) {
+              console.error(xhr.responseText);
+          }
+      });
+      return false; // Prevent default form submission behavior
+  });
+
+  $('#spreedsheetfile').focus(function() {
+      $('#validationMessages').empty();
+      $('#excelTable').empty();
+  });
+
+  $(document).on('click', '#uploadButton', function(e) {
+    // e.preventDefault(); // Corrected line
+    var file = $('#spreedsheetfile')[0].files[0];
+    console.log("Selected file:", file);
+
+    // Perform validation
+    var validationResult = validateFile(file);
+    console.log("Validation result:", validationResult);
+
+    // If file is valid, proceed with form submission via AJAX
+    if (validationResult === "File is valid.") {
+        var formData = new FormData($('#uploadForm')[0]);
+        console.log(formData);
+        $.ajax({
+            url: 'query/excelValidation.php?action=excelupload',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                var jsonResponse = JSON.parse(response);
+                console.log(jsonResponse);
+                $('#validationMessages').text(jsonResponse);
+                // window.location.href = "index.php";
+            },
+            error: function(jqXHR, textStatus, error) {
+                console.log("AJAX Error:", error);
+                var Errors = JSON.parse(jqXHR.responseText);
+                console.log(Errors);
+                $('#validationMessages').text(Errors);
+            }
+        });
+    }
+});
+
+});
+
+function validateFile(file) {
+  // Implement file validation logic here
+  // Example validation: Check file size, file type, etc.
+  if (file.size > 1024 * 1024) {
+      return "File size exceeds the maximum allowed size.";
+  }
+  return "File is valid.";
+}
+
+
+
